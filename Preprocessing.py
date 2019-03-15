@@ -10,7 +10,7 @@ from os import listdir
 from os.path import isfile, join, isdir
 from pyriemann.estimation import XdawnCovariances
 from pyriemann.tangentspace import TangentSpace
-'''
+
 
 # Create filtering variables
 fs = 200.0     # 200 Hz sampling rate
