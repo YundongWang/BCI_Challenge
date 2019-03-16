@@ -8,4 +8,4 @@ To run python code, please download data from https://www.kaggle.com/c/inria-bci
 
 To run *EEGNET.py*, install EEGModels at https://github.com/vlawhern/arl-eegmodels and other **tensorflow** packages.
 
-To run *StackNet.py*, install pyStackNet at https://github.com/h2oai/pystacknet, install **LightGBM** and **XGBoost** using conda or pip.
+To run *StackNet.py*, install **pystacknet** at https://github.com/h2oai/pystacknet, install **LightGBM** and **XGBoost** using conda or pip.
