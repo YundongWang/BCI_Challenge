@@ -1,4 +1,4 @@
-# COGS189
+# COGS189 Final Project
 ## BCI Challenge @ NER 2015
 
 **Authors**:
