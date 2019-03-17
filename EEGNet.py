@@ -34,9 +34,9 @@ X_train = X_train.reshape(X_train.shape[0], kernels, chans, samples)
 X_valid = X_valid.reshape(X_valid.shape[0], kernels, chans, samples)
 X_test = X_test.reshape(X_test.shape[0], kernels, chans, samples)
 
-print(X_train.shape[0], 'train samples')
-print(X_valid.shape[0], 'validation samples')
-print(X_test.shape[0], 'test samples')
+print(str(X_train.shape[0]) + ' train samples')
+print(str(X_valid.shape[0]) + ' validation samples')
+print(str(X_test.shape[0]) + ' test samples')
 
 # configure EEGNET model
 model = EEGNet(nb_classes = 2, Chans = chans, Samples = samples,
