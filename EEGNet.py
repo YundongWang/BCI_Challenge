@@ -77,3 +77,4 @@ y_pred = y_probs.argmax(axis = -1)
 csv = pd.read_csv('./data/benchmark.csv')
 csv['Prediction'] = y_probs
 csv.to_csv('./submission/submissionEEGNET.csv', index=False)
+print('--------------------Submission file has been generated.--------------------------')

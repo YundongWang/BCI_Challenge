@@ -71,6 +71,6 @@ y_probs = model.predict_proba(X_test)[:,1]
 # save score
 csv = pd.read_csv('./data/benchmark.csv')
 csv['Prediction'] = y_probs
-csv.to_csv('submission_StackNet.csv', index=False)
+csv.to_csv('./submission/submission_StackNet.csv', index=False)
 
 print('--------------------Submission file has been generated.--------------------------')
