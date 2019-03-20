@@ -6,6 +6,8 @@ Yundong Wang, Zimu Li, Haoran Zhang, Yadi Deng
 
 To run python code, please download data from https://www.kaggle.com/c/inria-bci-challenge/data and put *train* and *test* directories under *data*. **Python version: 3.6**
 
+To run *Preprocessing.py*, install **pyriemann** packages using conda or pip.
+
 To run *EEGNET.py*, install EEGModels at https://github.com/vlawhern/arl-eegmodels and required **TensorFlow** packages.
 
 To run *StackNet.py*, install **pystacknet** at https://github.com/h2oai/pystacknet, install **LightGBM** and **XGBoost** using conda or pip.
