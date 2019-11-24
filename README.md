@@ -8,6 +8,8 @@ Yundong Wang, Zimu Li, Haoran Zhang, Yadi Deng
 
 This project applied machine learning techniques to the P300 speller classification challenge at Kaggle BCI Challenge @ NER 2015. The P300 speller is a brain-computer interface paradigm that allows one to input text or commands to a computer via brain activity measured by electroencephalography (EEG).
 
+xDAWN “Covariance algorithm and Tangent Space algorithm” which uses the spatial correlations of the simultaneously recorded EEG as features for the error detection classification are implemented.
+
 We applied multiple machine learning techniques (SVM, Logistic Regression, Random Forest, etc) and deep learning model dedicated for EEG data ([EEGNET](https://arxiv.org/pdf/1611.08024.pdf)). Lastly, we built a StackNet model that achieved the 4th best AUC (0.803) result compared to the candidates pool.
 
 The presentation slides can be found [here.](https://docs.google.com/presentation/d/16Orsav1K4bPTFhPx3TsfYNxzgrvTMb2Gcf9RTC6WYmU/edit?ts=5c8aa323#slide=id.g5231037314_0_0)
