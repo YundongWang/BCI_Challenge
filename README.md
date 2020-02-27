@@ -40,7 +40,26 @@ To run *StackNet.py*, install **pystacknet** at https://github.com/h2oai/pystack
 ![eopch2](images/Subject_2_Pz.png)
 ![eopch3](images/Fz.png)
 ![eopch4](images/Pz.png)
-
+<table border='1'>
+    <tbody>
+        <tr>
+            <td>
+                <img src="images/Subject_2_Fz.png"/>
+            </td>
+            <td>
+                <img src="images/Subject_2_Pz.png"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="images/Fz.png"/>
+            </td>
+            <td>
+                <img src="images/Pz.png"/>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 ## EEGNET archetectures
 ![EEGNET](images/EEGNET.png)
