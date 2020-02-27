@@ -1,4 +1,5 @@
 from generate_epoch import *
+import matplotlib.pyplot as plt               # for plotting
 
 
 def butter_bandpass_filter(raw_data, lowcut, highcut, fs, order = 2):
@@ -23,3 +24,18 @@ if __name__ == "__main__":
 
     data = generate_epoch('FeedBackEvent', 'Data_S02_Sess01.csv', channels, butter_bandpass_filter)
     print('Epoched data shape: '+ str(data.shape)) # should be (60, 56, 180): 60 events, 56 channels, 180 time-stamps
+    epoch_s = -100
+    epoch_e = 800
+    fs = 200.0
+    dt = int(1000/fs);
+    times = range(epoch_s, epoch_e, dt)
+
+    # We want to draw Pz
+    channel = channels.index("Cz")
+    for i in range(int(data.shape[0])):
+        plt.plot(times, data[i, channel, :])
+
+    plt.xlabel('Time (ms)')
+    plt.ylabel('Amplitude (uV)')
+    plt.grid(True)
+    plt.savefig('%s.png'%"Cz")

@@ -4,7 +4,6 @@
 """
 import numpy as np                            # for dealing with data
 from scipy.signal import butter, sosfiltfilt  # for filtering
-import matplotlib.pyplot as plt               # for plotting
 import pandas as pd
 import os
 from os import listdir
