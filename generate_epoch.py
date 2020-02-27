@@ -50,8 +50,6 @@ def generate_epoch(label_col_name, file_path, channels, eeg_filter, baseline = T
     for i in range(0, (mark_df.shape[0])): # we will iterate through the rows (shape[0]) of mark_df
         mark_df[i, 1] = (round(mark_df[i, 1] / rounder) * rounder) # we will round the time values
 
-    order = 5
-
     # Define the bounds of our epoch as well as our baseline
     b_s = int((abs(epoch_s) + bl_s) * (fs / 1000)) # index in epoch_df where our baseline begins
     b_e = int((abs(epoch_s) + bl_e) * (fs / 1000)) # index in epoch_df where our baseline ends
@@ -61,12 +59,13 @@ def generate_epoch(label_col_name, file_path, channels, eeg_filter, baseline = T
     # Let's define some helpful variables to make our extraction easier
     e_s = int((epoch_s * (fs / 1000))) # effectively the number of indices before marker we want
     e_e = int((epoch_e * (fs / 1000))) # effectively the number of indices after marker we want
+    
     # Epoch the data
     final_epoch = np.empty((mark_index_df.shape[0], epoch_len, 0), float)
     for channel in channels:
         epoch = np.zeros(shape = (int(mark_index_df.shape[0]), epoch_len))
         raw_eeg_df = train_data[channel].values
-        clean_eeg_df = eeg_filter(raw_eeg_df, lowcut, highcut, fs, order) # Change this to your filter
+        clean_eeg_df = eeg_filter(raw_eeg_df, lowcut, highcut, fs, order = 5) # Change this to your filter
         for i in range(0, int(mark_index_df.shape[0])):
             t = mark_index_df[i, 1] # the rounded time point of stimulus onset
             epoch[i, :] = clean_eeg_df[t + e_s:t + e_e] # grab the appropriate samples around the stimulus onset
