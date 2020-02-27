@@ -27,7 +27,7 @@ if __name__ == "__main__":
     epoch_s = -100
     epoch_e = 800
     fs = 200.0
-    dt = int(1000/fs);
+    dt = int(1000/fs)
     times = range(epoch_s, epoch_e, dt)
 
     # We want to draw Pz
