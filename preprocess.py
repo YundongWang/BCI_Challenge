@@ -1,5 +1,7 @@
 """
 @author: Yundong Wang, Zimu Li
+
+Preprocessing data from Kaggle BCI Challenge.
 """
 from generate_epoch import *
 from pyriemann.estimation import XdawnCovariances

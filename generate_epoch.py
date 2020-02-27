@@ -21,6 +21,11 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order = 2):
 
 def generate_epoch(label_col_name, file_path, channels, fs=200.0, lowcut=1.0, highcut=40.0, epoch_s = -100, epoch_e = 800, bl_s = -400, bl_e = -300):
     """
+    :description: Generating epoch given csv file. Make sure the csv file layout meets the requirement.
+        It should contain 'Time' column that represents timepoints, and for each timepoint there should be
+        corresponding stimuli indicator ('1' means the current timepoint is a stimuli, '0' means not).
+        Here we used a butter bandpass filter, but you can change to your favorite one.
+        
     :label_col_name (String): column name in csv file indicates whether a timepoint is stimuli.
     :file_path (String): path to your csv file
     :channels (int): number of channels from your EEG data
