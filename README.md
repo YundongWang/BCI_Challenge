@@ -40,18 +40,18 @@ To run *StackNet.py*, install **pystacknet** at https://github.com/h2oai/pystack
     <tbody>
         <tr>
             <td>
-                <img style="display:block;" width="100%" height="100%" src="images/Subject_2_Fz.png"/>
+                <img src="images/Subject_2_Fz.png"/>
             </td>
             <td>
-                <img style="display:block;" width="100%" height="100%" src="images/Subject_2_Pz.png"/>
+                <img src="images/Subject_2_Pz.png"/>
             </td>
         </tr>
         <tr>
             <td>
-                <img style="display:block;" width="100%" height="100%" src="images/Fz.png"/>
+                <img src="images/Fz.png"/>
             </td>
             <td>
-                <img style="display:block;" width="100%" height="100%" src="images/Pz.png"/>
+                <img src="images/Pz.png"/>
             </td>
         </tr>
     </tbody>
