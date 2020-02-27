@@ -25,7 +25,7 @@ def generate_epoch(label_col_name, file_path, channels, fs=200.0, lowcut=1.0, hi
         It should contain 'Time' column that represents timepoints, and for each timepoint there should be
         corresponding stimuli indicator ('1' means the current timepoint is a stimuli, '0' means not).
         Here we used a butter bandpass filter, but you can change to your favorite one.
-        
+
     :label_col_name (String): column name in csv file indicates whether a timepoint is stimuli.
     :file_path (String): path to your csv file
     :channels (int): number of channels from your EEG data
@@ -71,7 +71,7 @@ def generate_epoch(label_col_name, file_path, channels, fs=200.0, lowcut=1.0, hi
     for channel in channels:
         epoch = np.zeros(shape = (int(mark_index_df.shape[0]), epoch_len))
         raw_eeg_df = train_data[channel].values
-        clean_eeg_df = butter_bandpass_filter(raw_eeg_df, lowcut, highcut, fs, order)
+        clean_eeg_df = butter_bandpass_filter(raw_eeg_df, lowcut, highcut, fs, order) # Change this to your filter
         for i in range(0, int(mark_index_df.shape[0])):
             t = mark_index_df[i, 1] # the rounded time point of stimulus onset
             epoch[i, :] = clean_eeg_df[t + e_s:t + e_e] # grab the appropriate samples around the stimulus onset
