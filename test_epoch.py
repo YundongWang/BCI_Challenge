@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
     stimulus_times_csv = pd.read_csv('Time_indices.csv')
     data = generate_epoch('Data_S02_Sess01.csv', channels, 200.0, butter_bandpass_filter, stimulus_times = stimulus_times_csv)
-    print('Epoched data shape: '+ str(data.shape)) # should be (60, 56, 180): 60 events, 56 channels, 300 time-stamps
+    print('Epoched data shape: '+ str(data.shape)) # should be (60, 56, 300): 60 events, 56 channels, 300 time-stamps
 
     # Default parameters for generate_epoch. We need those info for drawing.
     epoch_s = -200
