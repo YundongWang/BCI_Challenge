@@ -36,23 +36,22 @@ To run *EEGNET.py*, install EEGModels at https://github.com/vlawhern/arl-eegmode
 To run *StackNet.py*, install **pystacknet** at https://github.com/h2oai/pystacknet, install **LightGBM** and **XGBoost** using conda or pip.
 
 ## Samples of Epoched EEG data
-
 <table>
     <tbody>
         <tr>
             <td>
-                <img src="images/Subject_2_Fz.png"/>
+                <img style="display:block;" width="100%" height="100%" src="images/Subject_2_Fz.png"/>
             </td>
             <td>
-                <img src="images/Subject_2_Pz.png"/>
+                <img style="display:block;" width="100%" height="100%" src="images/Subject_2_Pz.png"/>
             </td>
         </tr>
         <tr>
             <td>
-                <img src="images/Fz.png"/>
+                <img style="display:block;" width="100%" height="100%" src="images/Fz.png"/>
             </td>
             <td>
-                <img src="images/Pz.png"/>
+                <img style="display:block;" width="100%" height="100%" src="images/Pz.png"/>
             </td>
         </tr>
     </tbody>
