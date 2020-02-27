@@ -14,6 +14,7 @@ We applied multiple machine learning techniques (SVM, Logistic Regression, Rando
 
 The presentation slides can be found [here.](https://docs.google.com/presentation/d/16Orsav1K4bPTFhPx3TsfYNxzgrvTMb2Gcf9RTC6WYmU/edit?ts=5c8aa323#slide=id.g5231037314_0_0)
 
+![video](images/P300_Speller.mp4)
 
 # Dataset
 Each session include 60 target stimulus, however, the last session of each subject contains 100 target stimulus. Which makes 340 target stimulus for each subject
