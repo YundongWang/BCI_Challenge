@@ -1,3 +1,9 @@
+"""
+@author: Yundong Wang
+
+Preprocessing data from Kaggle BCI Challenge.
+"""
+
 from generate_epoch import *
 import matplotlib.pyplot as plt               # for plotting
 
