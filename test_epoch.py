@@ -7,7 +7,8 @@ Preprocessing data from Kaggle BCI Challenge.
 from generate_epoch import *
 import matplotlib.pyplot as plt               # for plotting
 from scipy.signal import butter, sosfiltfilt  # for filtering
-
+import numpy as np                            # for dealing with data
+import pandas as pd
 
 def butter_bandpass_filter(raw_data, fs, lowcut = 1.0, highcut =40.0, order = 5):
     '''
@@ -34,7 +35,8 @@ if __name__ == "__main__":
            'CP6', 'TP8', 'P7', 'P5', 'P3', 'P1', 'Pz', 'P2', 'P4', 'P6', 'P8',
            'PO7', 'POz', 'P08', 'O1', 'O2']
 
-    data = generate_epoch('Data_S02_Sess01.csv', channels, 200.0, butter_bandpass_filter, stimulus_times = np.load("data/Time_indices.npy"))
+    stimulus_times_csv = pd.read_csv('Time_indices.csv')
+    data = generate_epoch('Data_S02_Sess01.csv', channels, 200.0, butter_bandpass_filter, stimulus_times = stimulus_times_csv)
     print('Epoched data shape: '+ str(data.shape)) # should be (60, 56, 180): 60 events, 56 channels, 300 time-stamps
 
     # Default parameters for generate_epoch. We need those info for drawing.
