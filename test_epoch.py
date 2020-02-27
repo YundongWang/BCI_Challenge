@@ -30,6 +30,8 @@ if __name__ == "__main__":
 
     data = generate_epoch('FeedBackEvent', 'Data_S02_Sess01.csv', channels, butter_bandpass_filter)
     print('Epoched data shape: '+ str(data.shape)) # should be (60, 56, 180): 60 events, 56 channels, 180 time-stamps
+
+    # Default parameters for generate_epoch. We need those info for drawing.
     epoch_s = -100
     epoch_e = 800
     fs = 200.0
