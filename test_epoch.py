@@ -36,7 +36,7 @@ if __name__ == "__main__":
     dt = int(1000/fs)
     times = range(epoch_s, epoch_e, dt)
 
-    # We want to draw Pz
+    # We want to draw Cz
     channel = channels.index("Cz")
     for i in range(int(data.shape[0])):
         plt.plot(times, data[i, channel, :])
