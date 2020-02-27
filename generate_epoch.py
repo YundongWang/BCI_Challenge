@@ -19,9 +19,9 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order = 2):
     filted_data = sosfiltfilt(sos, data)
     return filted_data
 
-def generate_epoch(label_col_name, file_path, channels, fs=200.0, lowcut=1.0, highcut=40.0, epoch_s = 0, epoch_e = 1300, bl_s = -400, bl_e = -300):
+def generate_epoch(label_col_name, file_path, channels, fs=200.0, lowcut=1.0, highcut=40.0, epoch_s = -100, epoch_e = 800, bl_s = -400, bl_e = -300):
     """
-    :label_col_name (String): column name for your target label in csv file.
+    :label_col_name (String): column name in csv file indicates whether a timepoint is stimuli.
     :file_path (String): path to your csv file
     :channels (int): number of channels from your EEG data
     :fs (float, optional): sampling rate
@@ -31,7 +31,7 @@ def generate_epoch(label_col_name, file_path, channels, fs=200.0, lowcut=1.0, hi
     :epoch_e (int, optional): epoch ending time relative to stmulus in miliseconds
     :bl_s (int, optional): baseline starting time relative to stmulus in miliseconds
     :bl_e (int, optional): baseline ending time relative to stmulus in miliseconds
-    :rtype (3d-nparray): epoched data with dimension (stimulus_per_participants, number_of_channels, number_of_time_points)
+    :rtype (3d-nparray): epoched data with dimension (stimulus_per_subj, number_of_channels, number_of_time_points)
     """
     # read dataand data selection
     train_data = pd.read_csv(file_path)
