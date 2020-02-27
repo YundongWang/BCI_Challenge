@@ -29,21 +29,23 @@ if __name__ == "__main__":
            'PO7', 'POz', 'P08', 'O1', 'O2']
 
     data = generate_epoch('FeedBackEvent', 'Data_S02_Sess01.csv', channels, butter_bandpass_filter)
-    print('Epoched data shape: '+ str(data.shape)) # should be (60, 56, 180): 60 events, 56 channels, 180 time-stamps
+    print('Epoched data shape: '+ str(data.shape)) # should be (60, 56, 180): 60 events, 56 channels, 300 time-stamps
 
     # Default parameters for generate_epoch. We need those info for drawing.
-    epoch_s = -100
-    epoch_e = 800
+    epoch_s = -200
+    epoch_e = 1300
     fs = 200.0
     dt = int(1000/fs)
     times = range(epoch_s, epoch_e, dt)
 
-    # We want to draw Cz
-    channel = channels.index("Cz")
-    for i in range(int(data.shape[0])):
-        plt.plot(times, data[i, channel, :])
+    channel = 'Pz'
+    channel_idx = channels.index(channel)
+    plt.plot(times, np.mean(data, axis = 0)[channel_idx])
+    # for i in range(int(data.shape[0])):
+    #     plt.plot(times, data[i, channel, :])
 
     plt.xlabel('Time (ms)')
     plt.ylabel('Amplitude (uV)')
     plt.grid(True)
-    plt.savefig('%s.png'%"Cz")
+    plt.title("Subject 2 Fz average")
+    plt.savefig('%s.png'%channel)

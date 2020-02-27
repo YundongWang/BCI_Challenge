@@ -10,7 +10,7 @@ from os import listdir
 from os.path import isfile, join, isdir
 
 
-def generate_epoch(label_col_name, file_path, channels, eeg_filter, baseline = True, fs=200.0, lowcut=1.0, highcut=40.0, epoch_s = -100, epoch_e = 800, bl_s = -400, bl_e = -300):
+def generate_epoch(label_col_name, file_path, channels, eeg_filter, baseline = True, fs=200.0, lowcut=1.0, highcut=40.0, epoch_s = -200, epoch_e = 1300, bl_s = -400, bl_e = -300):
     """
     :description: Generating epoch given csv file. Make sure the csv file layout meets the requirement.
         It should contain 'Time' column that represents timepoints, and for each timepoint there should be
