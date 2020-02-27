@@ -58,7 +58,7 @@ if __name__ == "__main__":
         subject_epoch = np.reshape(subject_epoch, (1, stimulus_per_subj, len(channels), epoch_len))
         train_data_list = np.vstack((train_data_list, subject_epoch))
 
-    print('Epoched training data shape: '+ str(train_data_list.shape))
+    print('Epoched training data shape: '+ str(train_data_list.shape)) # should be (16, 340, 56, 260)
 
     # ############################## save data to disk ###############################
     np.save('./data/train_data.npy', train_data_list)

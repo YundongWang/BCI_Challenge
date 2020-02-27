@@ -2,9 +2,9 @@
 @author: Yundong Wang, Zimu Li
 @reference: UC San Diego COGS 189 Winter 2019 Assignment 1, writen by Alessandro D'Amico
 """
-import numpy as np                                      # for dealing with data
+import numpy as np                            # for dealing with data
 from scipy.signal import butter, sosfiltfilt  # for filtering
-import matplotlib.pyplot as plt                         # for plotting
+import matplotlib.pyplot as plt               # for plotting
 import pandas as pd
 import os
 from os import listdir
@@ -59,7 +59,7 @@ def generate_epoch(label_col_name, file_path, channels, eeg_filter, baseline = T
     # Let's define some helpful variables to make our extraction easier
     e_s = int((epoch_s * (fs / 1000))) # effectively the number of indices before marker we want
     e_e = int((epoch_e * (fs / 1000))) # effectively the number of indices after marker we want
-    
+
     # Epoch the data
     final_epoch = np.empty((mark_index_df.shape[0], epoch_len, 0), float)
     for channel in channels:
