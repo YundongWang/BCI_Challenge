@@ -5,6 +5,18 @@ Preprocessing the data from Kaggle BCI Challenge.
 """
 from generate_epoch import *
 
+
+def butter_bandpass_filter(raw_data, lowcut, highcut, fs, order = 2):
+    '''
+    The filter I want to apply to my raw eeg data.
+    '''
+    nyq = 0.5 * fs
+    low = lowcut / nyq
+    high = highcut / nyq
+    sos = butter(order, [low, high], analog = False, btype = 'band', output = 'sos')
+    filted_data = sosfiltfilt(sos, raw_data)
+    return filted_data
+
 if __name__ == "__main__":
     total_training_subj = 16
     total_testing_subj = 10
@@ -40,7 +52,8 @@ if __name__ == "__main__":
         # iterate through all trials and generate epoch
         for trial_id in range(trial_per_subj):
             subject_dir = subject_dir_list[trial_id]
-            data = generate_epoch('FeedBackEvent', './data/train/'+subject_dir, channels, fs, lowcut, highcut, epoch_s, epoch_e, bl_s, bl_e)
+            data = generate_epoch('FeedBackEvent', './data/train/'+subject_dir, \
+                channels, butter_bandpass_filter, True, fs, lowcut, highcut, epoch_s, epoch_e, bl_s, bl_e)
             subject_epoch = np.vstack((subject_epoch, data))
         subject_epoch = np.reshape(subject_epoch, (1, stimulus_per_subj, len(channels), epoch_len))
         train_data_list = np.vstack((train_data_list, subject_epoch))

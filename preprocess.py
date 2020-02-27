@@ -7,6 +7,14 @@ from generate_epoch import *
 from pyriemann.estimation import XdawnCovariances
 from pyriemann.tangentspace import TangentSpace
 
+def butter_bandpass_filter(data, lowcut, highcut, fs, order = 2):
+    nyq = 0.5 * fs
+    low = lowcut / nyq
+    high = highcut / nyq
+    sos = butter(order, [low, high], analog = False, btype = 'band', output = 'sos')
+    filted_data = sosfiltfilt(sos, data)
+    return filted_data
+
 if __name__ == "__main__":
     total_training_participant = 16
     total_testing_participant = 10
@@ -42,7 +50,7 @@ if __name__ == "__main__":
         subject_epoch = np.empty((0, len(channels), epoch_len), float)
         for trial_id in range(trial_per_subj):
             subject_dir = subject_dir_list[trial_id]
-            data = generate_epoch('FeedBackEvent', './data/train/'+subject_dir, channels, fs, lowcut, highcut, epoch_s, epoch_e, bl_s, bl_e)
+            data = generate_epoch('FeedBackEvent', './data/train/'+subject_dir, channels, butter_bandpass_filter, fs, lowcut, highcut, epoch_s, epoch_e, bl_s, bl_e)
             subject_epoch = np.vstack((subject_epoch, data))
         subject_epoch = np.reshape(subject_epoch, (1, stimulus_per_subj, len(channels), epoch_len))
         train_data_list = np.vstack((train_data_list, subject_epoch))
