@@ -6,11 +6,17 @@ Preprocessing data from Kaggle BCI Challenge.
 
 from generate_epoch import *
 import matplotlib.pyplot as plt               # for plotting
+from scipy.signal import butter, sosfiltfilt  # for filtering
 
 
-def butter_bandpass_filter(raw_data, lowcut, highcut, fs, order = 2):
+def butter_bandpass_filter(raw_data, fs, lowcut = 1.0, highcut =40.0, order = 5):
     '''
     The filter I want to apply to my raw eeg data.
+    :raw_data (nparray): data you want to process
+    :fs (float): sampling rate
+    :lowcut (float, optional): lowest frequency we will pass
+    :highcut (float, optional): highest frequency we will pass
+    :order (int, optional): order of filter
     '''
     nyq = 0.5 * fs
     low = lowcut / nyq
@@ -28,7 +34,7 @@ if __name__ == "__main__":
            'CP6', 'TP8', 'P7', 'P5', 'P3', 'P1', 'Pz', 'P2', 'P4', 'P6', 'P8',
            'PO7', 'POz', 'P08', 'O1', 'O2']
 
-    data = generate_epoch('FeedBackEvent', 'Data_S02_Sess01.csv', channels, butter_bandpass_filter)
+    data = generate_epoch('Data_S02_Sess01.csv', channels, 200.0, butter_bandpass_filter, stimulus_times = np.load("data/Time_indices.npy"))
     print('Epoched data shape: '+ str(data.shape)) # should be (60, 56, 180): 60 events, 56 channels, 300 time-stamps
 
     # Default parameters for generate_epoch. We need those info for drawing.
