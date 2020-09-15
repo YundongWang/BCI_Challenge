@@ -1,5 +1,5 @@
 .DS_Store
-data/
+data
 Untitled.ipynb
 .ipynb_checkpoints
 __pycache__

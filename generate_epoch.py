@@ -9,7 +9,7 @@ from os import listdir
 from os.path import isfile, join, isdir
 
 
-def generate_epoch(file_path, channels, fs, eeg_filter, stimulus_times = None, baseline = True,  epoch_s = -200, epoch_e = 1300, bl_s = -400, bl_e = -300):
+def generate_epoch(file_path, channels, fs, eeg_filter, stimulus_times=None, baseline=True,  epoch_s=0, epoch_e=700, bl_s=0, bl_e=100):
     """
     :description: Generating epoch given csv file. Make sure the csv file layout meets the requirement.
         It should contain 'Time' column that represents timepoints, and the time should start from 0.
@@ -32,30 +32,36 @@ def generate_epoch(file_path, channels, fs, eeg_filter, stimulus_times = None, b
     # read dataand data selection
     train_data = pd.read_csv(file_path)
 
-    train_data.loc[:,'Time'] = train_data.loc[:,'Time']*1000
-    raw_eeg  = train_data[channels].values.T
+    train_data.loc[:, 'Time'] = train_data.loc[:, 'Time']*1000
+    raw_eeg = train_data[channels].values.T
 
     time_df = train_data['Time'].values
     train_data['index'] = train_data.index.values
     if stimulus_times is None:
-        mark_indices = np.asarray(train_data[train_data['FeedBackEvent']==1].index).flatten()
+        mark_indices = np.asarray(
+            train_data[train_data['FeedBackEvent'] == 1].index).flatten()
     else:
-        mark_indices = np.round(np.asarray(stimulus_times).flatten() * fs).astype(int)
-        
+        mark_indices = np.round(np.asarray(
+            stimulus_times).flatten() * fs).astype(int)
+
     # Define the bounds of our epoch as well as our baseline
-    b_s = int((abs(epoch_s) + bl_s) * (fs / 1000)) # index in epoch_df where our baseline begins
-    b_e = int((abs(epoch_s) + bl_e) * (fs / 1000)) # index in epoch_df where our baseline ends
+    # index in epoch_df where our baseline begins
+    b_s = int((abs(epoch_s) + bl_s) * (fs / 1000))
+    # index in epoch_df where our baseline ends
+    b_e = int((abs(epoch_s) + bl_e) * (fs / 1000))
     # Let's calculate the length our epoch with our given sampling rate
     epoch_len = int((abs(epoch_s) + abs(epoch_e)) * (fs / 1000))
 
     # Let's define some helpful variables to make our extraction easier
-    e_s = int((epoch_s * (fs / 1000))) # effectively the number of indices before marker we want
-    e_e = int((epoch_e * (fs / 1000))) # effectively the number of indices after marker we want
+    # effectively the number of indices before marker we want
+    e_s = int((epoch_s * (fs / 1000)))
+    # effectively the number of indices after marker we want
+    e_e = int((epoch_e * (fs / 1000)))
 
     # Epoch the data
     final_epoch = np.empty((mark_indices.shape[0], epoch_len, 0), float)
     for channel in channels:
-        epoch = np.zeros(shape = (int(mark_indices.shape[0]), epoch_len))
+        epoch = np.zeros(shape=(int(mark_indices.shape[0]), epoch_len))
         raw_eeg = train_data[channel].values
 
         ################# You may want to apply your own filter ################
@@ -63,7 +69,8 @@ def generate_epoch(file_path, channels, fs, eeg_filter, stimulus_times = None, b
         ########################################################################
 
         for i, mark_idx in enumerate(mark_indices):
-            epoch[i, :] = clean_eeg[mark_idx + e_s : mark_idx + e_e] # grab the appropriate samples around the stimulus onset
+            # grab the appropriate samples around the stimulus onset
+            epoch[i, :] = clean_eeg[mark_idx + e_s: mark_idx + e_e]
 
         # Baseline correction
         if baseline:
